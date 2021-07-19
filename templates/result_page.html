@@ -1,0 +1,220 @@
+{% extends "base.html" %} {% block page_content %}
+
+<section class="page-all-content">
+  <!-- KNN -->
+  {% if knn %}
+  <div class="page-header">
+    <div class="container"><h2>K NEAREST NEIGHBOR</h2></div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <p>
+        K Nearest Neighbor มีความแม่นยำโดยรวมร้อยละ
+        <a style="color: red">98</a> มีความแม่นยำในการจำแนกผู้ติดเชื้อ (1)
+        ร้อยละ <a style="color: red">94</a> และความแม่นยำในการจำแนกผู้เสียชีวิต
+        (2) ร้อยละ <a style="color: red">93</a>
+        และใช้เวลาในการวัดประสิทธิภาพ 4 นาที 27 วินาที
+      </p>
+      <br />
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779078511645425684/KNN.PNG"
+        />
+        <p><b>** ข้อมูลทั้งหมด 700 ทวีต **</b></p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Naive Bayes -->
+  {% if nb %}
+  <div class="page-header">
+    <div class="container"><h2>NAIVE BAYES</h2></div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <p>
+        Naive Bayes มีความแม่นยำโดยรวมร้อยละ
+        <a style="color: red">97</a> มีความแม่นยำในการจำแนกผู้ติดเชื้อ (1)
+        ร้อยละ <a style="color: red">85</a> และความแม่นยำในการจำแนกผู้เสียชีวิต
+        (2) ร้อยละ <a style="color: red">90</a>
+        และใช้เวลาในการวัดประสิทธิภาพ 422 มิลลิวินาที
+      </p>
+      <br />
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779078513848352778/Naive_Bayes.PNG"
+        />
+        <p><b>** ข้อมูลทั้งหมด 700 ทวีต **</b></p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Decision Tree -->
+  {% if dt %}
+  <div class="page-header">
+    <div class="container"><h2>DECISION TREE</h2></div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <p>
+        Decision Tree มีความแม่นยำโดยรวมร้อยละ
+        <a style="color: red">98</a> มีความแม่นยำในการจำแนกผู้ติดเชื้อ (1)
+        ร้อยละ <a style="color: red">94</a> และความแม่นยำในการจำแนกผู้เสียชีวิต
+        (2) ร้อยละ <a style="color: red">93</a>
+        และใช้เวลาในการวัดประสิทธิภาพ 1.51 วินาที
+      </p>
+      <br />
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779078510336540692/Decision_Tree.PNG"
+        />
+        <p><b>** ข้อมูลทั้งหมด 700 ทวีต **</b></p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Random Forest -->
+  {% if rf %}
+  <div class="page-header">
+    <div class="container"><h2>RANDOM FOREST</h2></div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <p>
+        Random Forest มีความแม่นยำโดยรวมร้อยละ
+        <a style="color: red">98</a> มีความแม่นยำในการจำแนกผู้ติดเชื้อ (1)
+        ร้อยละ <a style="color: red">95</a> และความแม่นยำในการจำแนกผู้เสียชีวิต
+        (2) ร้อยละ <a style="color: red">95</a>
+        และใช้เวลาในการวัดประสิทธิภาพ 6.3 วินาที
+      </p>
+      <br />
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779078515232210964/Random_Forest.PNG"
+        />
+        <p><b>** ข้อมูลทั้งหมด 700 ทวีต **</b></p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Support Vector Machine -->
+  {% if svm %}
+  <div class="page-header">
+    <div class="container"><h2>SUPPORT VECTOR MACHINE</h2></div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <p>
+        Support Vector Machine มีความแม่นยำโดยรวมร้อยละ
+        <a style="color: red">98</a> มีความแม่นยำในการจำแนกผู้ติดเชื้อ (1)
+        ร้อยละ <a style="color: red">94</a> และความแม่นยำในการจำแนกผู้เสียชีวิต
+        (2) ร้อยละ <a style="color: red">95</a>
+        และใช้เวลาในการวัดประสิทธิภาพ 1 นาที 18 วินาที
+      </p>
+      <br />
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779078516381450250/SVM.PNG"
+        />
+        <p><b>** ข้อมูลทั้งหมด 700 ทวีต **</b></p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Default -->
+  {% if default %}
+  <div class="page-header">
+    <div class="container"><h2>RESULTS OF COMPARISON</h2></div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <p>
+        ในส่วนของอัลกอริทึมทั่วไปที่ไม่ได้นำการเรียนรู้เชิงลึก (Deep Learning)
+        เข้ามาใช้ มีผลความแม่นยำ และค่า F1-Score ดังนี้
+      </p>
+      <br />
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/778693804256526346/Accuracy_Score.png"
+        />
+      </div>
+      <br />
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/778693804425216000/F1_Score.png"
+        />
+      </div>
+      <br />
+      <p>
+        ตามผลคะแนนความแม่นยำ จะเห็นได้ว่าอัลกอริทึม RF (Random Forest)
+        นั้นมีคะแนนที่สูงกว่าอัลกอริทึมตัวอื่น ๆ และอัลกอริทึม NB (Naive Bayes)
+        มีคะแนนอยู่ลำดับท้ายสุด ส่วนอัลกอริทึม KNN (K Nearest Neighbor), DTREE
+        (Decision Tree), SVM (Support Vector Machine)
+        มีคะแนนอยู่ลำดับใกล้เคียงกัน ผู้พัฒนาจึงเล็งเห็นและนำอัลกอริทึม Random
+        Forest มาใช้ในส่วน Information Extraction กับเว็บนี้
+      </p>
+
+      <br />
+      <div class="container" style="text-align: center">---------</div>
+      <br />
+
+      <p>
+        ในส่วนของหลักการเรียนรู้เชิงลึก (Deep Learning) ผู้พัฒนาได้ทดลองใช้ Word
+        Embedding ทั้งสองแบบคือ
+        <a
+          href="https://www.kaggle.com/davidmezzetti/cord19-fasttext-vectors"
+          target="_blank"
+          >Covid Word Embedding</a
+        >
+        กับ
+        <a href="https://fasttext.cc/docs/en/crawl-vectors.html" target="_blank"
+          >English Word Embedding</a
+        >
+        เหตุผลที่นำ Word Embedding ที่เกี่ยวกับ Covid
+        มาใช้ก็เพราะผู้พัฒนาต้องการทดสอบความแม่นยำของโมเดลตัวนี้
+        ว่าจะน้อยลงหรือไม่ถ้าหากนำมาใช้กับข้อมูลที่ไม่มีความเกี่ยวข้องกับเรื่อง
+        Covid เลย
+      </p>
+
+      <br />
+      <div class="container" style="text-align: center">
+        <p>Covid Word Embedding</p>
+        <br />
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/778700377066307594/CovidWordEmb.PNG"
+        />
+      </div>
+
+      <br />
+      <div class="container" style="text-align: center">
+        <p>English Word Embedding</p>
+        <br />
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/778700383413207060/EngWordEmb.PNG"
+        />
+      </div>
+
+      <br />
+      <p>
+        จะเห็นได้ว่าผลความแม่นยำของ English Word Embedding นั้นสูงกว่า Covid
+        Word Embedding เป็นไปตามข้อสมมติฐานของผู้พัฒนา เพราะว่า Train Data
+        ของเรานั้นไม่ได้มีส่วนเกี่ยวข้องกับ Covid เลย ฉะนั้น Word Embedding
+        ที่เป็นภาษาอังกฤษล้วน ๆ ย่อมมีความแม่นยำสูงกว่าแน่นอน
+        สุดท้ายนี้ผู้พัฒนาจึงนำโมเดลตัวที่มีความแม่นยำสูงที่สุดมาใช้กับบนเว็บไซต์
+      </p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

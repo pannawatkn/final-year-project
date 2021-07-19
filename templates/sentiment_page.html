@@ -1,0 +1,117 @@
+{% extends "base.html" %} {% block page_content %}
+<section class="page-all-content">
+  <div class="page-header">
+    <div class="container"><h2>SENTIMENT ANALYSIS</h2></div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <h4>เลือกประเภทสายพันธุ์</h4>
+      <!-- Button Retrieve -->
+      <div class="inner">
+        <form
+          action="{{ url_for('sentiment_retrieve_twitter_data') }}"
+          method="post"
+        >
+          <select name="disease" style="padding: 7px; padding-right: 30px"">
+            <option value="COVID19">COVID-19</option>
+            <option value="SARS">SARS</option>
+            <option value="MERS-CoV">MERS-CoV</option>
+          </select>
+          <button
+            class="btn btn-primary"
+            style="margin-top: -4px; margin-left: 3px"
+            type="submit"
+          >
+            Retrieve ข้อมูล
+          </button>
+        </form>
+      </div>
+
+      <!-- Button Analyze -->
+      <div class="inner" style="float: right">
+        <form action="{{ url_for('sentiment_predict') }}" method="post">
+          {% if sentimentReadyToPredict %}
+          <button
+            class="btn btn-success"
+            style="margin-top: -4px; margin-left: 3px; width: 130px"
+            name="cleaned_df"
+            value="{{ cleaned_df }}"
+            type="submit"
+          >
+            Analyze
+          </button>
+          {% else %}
+          <button
+            class="btn btn-success"
+            style="margin-top: -4px; margin-left: 3px; width: 130px"
+            name="cleaned_df"
+            value="{{ cleaned_df }}"
+            type="submit"
+            disabled
+          >
+            Analyze
+          </button>
+          {% endif %}
+        </form>
+      </div>
+
+      <!-- Button Clean -->
+      <div class="inner" style="float: right">
+        <form action="{{ url_for('sentiment_data_cleaning') }}" method="post">
+          {% if sentimentReadyToClean %}
+          <button
+            class="btn btn-danger"
+            style="margin-top: -4px; margin-left: 3px; width: 130px"
+            name="df"
+            value="{{ df }}"
+            type="submit"
+          >
+            Clean ข้อมูล
+          </button>
+          {% else %}
+          <button
+            class="btn btn-danger"
+            style="margin-top: -4px; margin-left: 3px; width: 130px"
+            name="df"
+            value="{{ df }}"
+            type="submit"
+            disabled
+          >
+            Clean ข้อมูล
+          </button>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+
+    {% if disease %}
+    <div class="container">
+      <div
+        style="
+          text-align: center;
+          background-color: #2b3a4a;
+          padding: 10px;
+          margin-bottom: 15px;
+        "
+      >
+        <h4 style="color: #fff">ข้อมูลของ {{ disease }}</h4>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Chart -->
+    {% if pie_chart %}
+    <div class="container" style="margin-bottom: 26px; margin-top: 26px">
+      <embed type="image/svg+xml" src="{{ pie_chart | safe }}" />
+    </div>
+    {% endif %}
+
+    <!-- Table -->
+    <div class="container">
+      {{ df_result | safe }} {{ show_cleaned_df | safe }}
+      <span style="font-family: KanitBold">{{ predicted_df | safe }}</span>
+    </div>
+  </div>
+</section>
+{% endblock %}

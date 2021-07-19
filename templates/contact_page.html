@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block page_content %}
+<section class="page-all-content">
+  <div class="page-header">
+    <div class="container"><h2>CONTACT</h2></div>
+  </div>
+
+  <div class="page-content" style="margin-top: 30px">
+    <div class="container">
+      <div class="container" style="width: 500px">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/778564442601947146/IMG_3676.jpg"
+          class="img-thumbnail shadow lg p-1"
+        />
+      </div>
+
+      <br />
+      <div class="container">
+        <div class="row" style="justify-content: center">
+          <div class="btn-language">
+            <form action="{{ url_for('contact_th') }}" method="post">
+              <button class="btn btn-primary" type="submit">ภาษาไทย</button>
+            </form>
+          </div>
+          <div class="btn-language">
+            <form action="{{ url_for('contact_en') }}" method="post">
+              <button class="btn btn-primary" type="submit">English</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="container" style="text-align: center">
+          {% if th_language %}
+          <p>นายปัณณวัฒน์ กาญจนปราการ</p>
+          <p>รหัสนักศึกษา: 60122201040</p>
+          <p>อีเมล์: pannawat2091@gmail.com</p>
+          <p>อีเมล์2: s60122201040@ssru.ac.th</p>
+          <p>เบอร์โทรศัพท์: 087-0044747</p>
+          {% else %}
+          <p>Mr. Pannawat Kanjanaprakarn</p>
+          <p>Student ID: 60122201040</p>
+          <p>Email: pannawat2091@gmail.com</p>
+          <p>Email2: s60122201040@ssru.ac.th</p>
+          <p>Tel: 087-0044747</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

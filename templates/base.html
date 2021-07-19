@@ -1,0 +1,363 @@
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"
+/>
+
+<!-- """""""""""""""""""""""""""""""""""""""" -->
+<!-- """""""""""""""" Script """""""""""""""" -->
+<!-- """""""""""""""""""""""""""""""""""""""" -->
+<!-- <script type="text/javascript" src="http://livejs.com/live.js"></script> -->
+
+<script
+  type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"
+></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"
+></script>
+
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
+
+<!-- """""""""""""""""""""""""""""""""""""""" -->
+<!-- """""""""""""""" Style """"""""""""""""" -->
+<!-- """""""""""""""""""""""""""""""""""""""" -->
+<style>
+  @font-face {
+    font-family: KanitRegular;
+    src: url(/static/fonts/Kanit-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: KanitBold;
+    src: url(/static/fonts/Kanit-Bold.ttf);
+  }
+
+  body {
+    background-color: #fff;
+    padding-bottom: 47px;
+    font-family: KanitRegular, sans-serif;
+    /* font-family: 'ชื่อฟ้อนต์อังกฤษ', 'ชื่อฟ้อนต์ไทย', sans-serif; */
+  }
+
+  .navbar {
+    height: 85px;
+  }
+
+  .navbar a {
+    color: #2b3a4a;
+    font-size: 17px;
+  }
+
+  .jumbotron {
+    margin-bottom: 0;
+  }
+
+  .menu {
+    margin: 0;
+  }
+
+  .menu ul {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+
+  .menu span {
+    margin: 10px;
+  }
+
+  .mr-auto {
+    margin-right: auto !important;
+  }
+
+  footer {
+    position: relative;
+    height: 70px;
+    width: 100%;
+    background-color: #2b3a4a;
+    box-shadow: 50px 0px 50px rgba(187, 189, 192, 0.25);
+  }
+
+  p.copyright {
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    line-height: 40px;
+    font-size: 0.8em;
+    text-align: center;
+    bottom: 0;
+    margin-bottom: 15px;
+  }
+
+  /* for sub-page */
+  .page-header {
+    background-color: #2b3a4a;
+    color: #fff;
+    padding: 40px 0 15px;
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(91, 142, 194, 0.39);
+  }
+
+  .page-header h2 {
+    margin-bottom: 20;
+  }
+
+  .page-content {
+    background-color: #fff;
+    margin-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  .inner {
+    display: inline-block;
+  }
+
+  .btn-language {
+    margin-left: 10px;
+  }
+
+  p {
+    margin: 0px;
+    padding: 0px;
+  }
+</style>
+
+<!-- """""""""""""""""""""""""""""""""""""""" -->
+<!-- """""""""""""""" Content """"""""""""""" -->
+<!-- """""""""""""""""""""""""""""""""""""""" -->
+<html>
+  <header>
+    <div class="navbar shadow p-3">
+      <div class="container">
+        <div class="logo mr-auto">
+          <a href="/" title="Project Website"><img src="" /></a>
+        </div>
+
+        <div class="menu">
+          <ul>
+            <span><a href="/">Home </a></span>
+
+            <!-- Information Extraction Dropdown -->
+            <span class="nav-item dropdown">
+              <a href="/" data-toggle="dropdown">
+                Information Extraction <i class="fa fa-caret-down"></i
+              ></a>
+
+              <div class="dropdown-menu" style="text-align: center">
+                <a class="dropdown-item" href="/information_extraction"
+                  >Retrieve</a
+                >
+                <form
+                  action="{{ url_for('ie_data_cleaning') }}"
+                  method="post"
+                  style="margin: 0; padding: 0"
+                >
+                  {% if readyToClean %}
+                  <button
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    name="df"
+                    value="{{ df }}"
+                    type="submit"
+                  >
+                    Clean
+                  </button>
+
+                  {% else %}
+                  <a
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    href="javascript:alert('ไม่สามารถ Clean ข้อมูลได้');"
+                  >
+                    Clean
+                  </a>
+
+                  {% endif %}
+                </form>
+
+                <form
+                  action="{{ url_for('ie_predict') }}"
+                  method="post"
+                  style="margin: 0; padding: 0"
+                >
+                  {% if readyToPredict %}
+                  <button
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    name="cleaned_df"
+                    value="{{ cleaned_df }}"
+                    type="submit"
+                  >
+                    Analyze
+                  </button>
+                  {% else %}
+                  <a
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    href="javascript:alert('ไม่สามารถ Analyze ข้อมูลได้');"
+                  >
+                    Analyze
+                  </a>
+                  {% endif %}
+                </form>
+              </div>
+            </span>
+            <!-- End Information Extraction Dropdown -->
+
+            <!-- Sentiment Analysis Dropdown -->
+            <span class="nav-item dropdown">
+              <a href="/" data-toggle="dropdown">
+                Sentiment Analysis <i class="fa fa-caret-down"></i
+              ></a>
+              <div class="dropdown-menu" style="text-align: center">
+                <a class="dropdown-item" href="/sentiment_analysis">Retrieve</a>
+
+                <form
+                  action="{{ url_for('sentiment_data_cleaning') }}"
+                  method="post"
+                  style="margin: 0; padding: 0"
+                >
+                  {% if sentimentReadyToClean %}
+                  <button
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    name="df"
+                    value="{{ df }}"
+                    type="submit"
+                  >
+                    Clean
+                  </button>
+
+                  {% else %}
+                  <a
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    href="javascript:alert('ไม่สามารถ Clean ข้อมูลได้');"
+                  >
+                    Clean
+                  </a>
+                  {% endif %}
+                </form>
+
+                <form
+                  action="{{ url_for('sentiment_predict') }}"
+                  method="post"
+                  style="margin: 0; padding: 0"
+                >
+                  {% if sentimentReadyToPredict %}
+                  <button
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    name="cleaned_df"
+                    value="{{ cleaned_df }}"
+                    type="submit"
+                  >
+                    Analyze
+                  </button>
+                  {% else %}
+                  <a
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    href="javascript:alert('ไม่สามารถ Analyze ข้อมูลได้');"
+                  >
+                    Analyze
+                  </a>
+                  {% endif %}
+                </form>
+              </div>
+            </span>
+            <!-- End Sentiment Analysis Dropdown -->
+
+            <!-- Algorithm Comparison Dropdown -->
+            <span class="nav-item dropdown">
+              <a href="/" data-toggle="dropdown">
+                Algorithm Comparison <i class="fa fa-caret-down"></i
+              ></a>
+              <div class="dropdown-menu" style="text-align: center">
+                <a class="dropdown-item" href="/result/k_nearest_neighbor"
+                  >KNN</a
+                >
+                <a class="dropdown-item" href="/result/naive_bayes"
+                  >Naive Bayes</a
+                >
+                <a class="dropdown-item" href="/result/decision_tree"
+                  >Decision Tree</a
+                >
+                <a class="dropdown-item" href="/result/random_forest"
+                  >Random Forest</a
+                >
+                <a class="dropdown-item" href="/result/support_vector_machine"
+                  >Support Vactor Machine</a
+                >
+
+                <a class="dropdown-item" href="/result"
+                  >Results of Comparison</a
+                >
+              </div>
+            </span>
+            <!-- End Algorithm Comparison Dropdown -->
+
+            <span><a href="/contact"> Contact </a></span>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <body>
+    <!-- Banner -->
+    <div
+      class="jumbotron jumbotron-fluid"
+      style="
+        background-image: url('https://cdn.discordapp.com/attachments/367651851417419787/779286896139698176/banner-lasted.gif');
+        background-size: 100%, 100%;
+        height: 49%;
+        background-repeat: no-repeat;
+      "
+    >
+      <div class="container">
+        <h1 class="display-4">
+          MACHINE LEARNING AND NATURAL
+          <p>LANGUAGE PROCESSING FOR</p>
+          <p>HEALTH CARE DOMAIN :</p>
+        </h1>
+        <p class="lead">a case study of COVID-19 twitter data</p>
+      </div>
+    </div>
+
+    {% block page_content %} {% endblock %}
+    <footer>
+      <p class="copyright">
+        © 2020 Computer Science, Suan Sunandha Rajabhat University
+      </p>
+    </footer>
+  </body>
+</html>

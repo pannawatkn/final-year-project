@@ -127,3 +127,18 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Config
+config.py
+
+# Classification Model
+classification-model/*
+!classification-model/dictVectorizer.pickle
+!classification-model/rf.pickle
+
+# Deep Learning Model
+deep-learning-model/*
+!deep-learning-model/idx2target.pickle
+!deep-learning-model/idx2word.pickle
+!deep-learning-model/target2idx.pickle
+!deep-learning-model/word2idx.pickle

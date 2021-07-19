@@ -1,0 +1,196 @@
+{% extends "base.html" %} {% block page_content %}
+<section class="page-all-content">
+  {% if showResult %}
+  <div class="page-header">
+    <div class="container">
+      <h2>INFORMATION EXTRACTION RESULTS OF 3 MONTHS</h2>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <h4>
+        ผลลัพธ์จากการจำแนกประเภทคนไข้ช่วงระยะเวลา 3 เดือน โดยใช้อัลกอริทึม
+        Random Forest ในการจำแนก
+      </h4>
+
+      <br />
+      <div class="container" style="text-align: center">
+        <br />
+        <h5>จำนวนผู้ติดเชื้อทั้งหมด</h5>
+      </div>
+      <br />
+      <p>เดือนมีนาคม ปี 2563</p>
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779101750757818388/mar_cases.PNG"
+          width="100%"
+        />
+      </div>
+      <br />
+      <p>เดือนเมษายน ปี 2563</p>
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779101748442431508/april_cases.PNG"
+          width="100%"
+        />
+      </div>
+      <br />
+      <p>เดือนพฤษภาคม ปี 2563</p>
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779101753051316265/may_cases.PNG"
+          width="100%"
+        />
+      </div>
+
+      <br />
+      <div class="container" style="text-align: center">
+        <br />
+        <h5>จำนวนผู้เสียชีวิตทั้งหมด</h5>
+      </div>
+      <br />
+      <p>เดือนมีนาคม ปี 2563</p>
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779101799289585724/mar_deaths.PNG"
+          width="100%"
+        />
+      </div>
+      <br />
+      <p>เดือนเมษายน ปี 2563</p>
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779101797502943272/april_deaths.PNG"
+          width="100%"
+        />
+      </div>
+      <br />
+      <p>เดือนพฤษภาคม ปี 2563</p>
+      <div class="container" style="text-align: center">
+        <img
+          src="https://cdn.discordapp.com/attachments/326153548981075971/779101800024375346/may_deaths.PNG"
+          width="100%"
+        />
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+  <div class="page-header">
+    <div class="container">
+      <h2>INFORMATION EXTRACTION (COVID-19)</h2>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <h4>เลือกประเทศที่ต้องการ</h4>
+      <!-- Button Retrieve -->
+      <div class="inner">
+        <form action="{{ url_for('ie_retrieve_twitter_data') }}" method="post">
+          <select name="country" style="padding: 7px; padding-right: 30px">
+            <option value="THAILAND">THAILAND</option>
+            <option value="CHINA">CHINA</option>
+            <option value="UNITED STATES">UNITED STATES</option>
+            <option value="INDIA">INDIA</option>
+          </select>
+          <button
+            class="btn btn-primary"
+            style="margin-top: -4px; margin-left: 3px"
+            type="submit"
+          >
+            Retrieve ข้อมูล
+          </button>
+        </form>
+      </div>
+
+      <!-- Button Analyze -->
+      <div class="inner" style="float: right">
+        <form action="{{ url_for('ie_predict') }}" method="post">
+          {% if readyToPredict %}
+          <button
+            class="btn btn-success"
+            style="margin-top: -4px; margin-left: 3px; width: 130px"
+            name="cleaned_df"
+            value="{{ cleaned_df }}"
+            type="submit"
+          >
+            Analyze
+          </button>
+          {% else %}
+          <button
+            class="btn btn-success"
+            style="margin-top: -4px; margin-left: 3px; width: 130px"
+            name="cleaned_df"
+            value="{{ cleaned_df }}"
+            type="submit"
+            disabled
+          >
+            Analyze
+          </button>
+          {% endif %}
+        </form>
+      </div>
+
+      <!-- Button Clean -->
+      <div class="inner" style="float: right">
+        <form action="{{ url_for('ie_data_cleaning') }}" method="post">
+          {% if readyToClean %}
+          <button
+            class="btn btn-danger"
+            style="margin-top: -4px; margin-left: 3px; width: 130px"
+            name="df"
+            value="{{ df }}"
+            type="submit"
+          >
+            Clean ข้อมูล
+          </button>
+          {% else %}
+          <button
+            class="btn btn-danger"
+            style="margin-top: -4px; margin-left: 3px; width: 130px"
+            name="df"
+            value="{{ df }}"
+            type="submit"
+            disabled
+          >
+            Clean ข้อมูล
+          </button>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+
+    {% if country %}
+    <div class="container">
+      <div
+        style="
+          text-align: center;
+          background-color: #2b3a4a;
+          padding: 10px;
+          margin-bottom: 15px;
+        "
+      >
+        <h4 style="color: #fff">ข้อมูลของ {{ country }}</h4>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Chart -->
+    {% if line_chart %}
+    <div class="container" style="margin-bottom: 26px; margin-top: 26px">
+      <embed type="image/svg+xml" src="{{ line_chart | safe }}" />
+    </div>
+    {% endif %}
+
+    <!-- Table -->
+    <div class="container">
+      {{ df_result | safe }} {{ show_cleaned_df | safe }}
+
+      <span style="font-family: KanitBold">{{ predicted_df | safe }}</span>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

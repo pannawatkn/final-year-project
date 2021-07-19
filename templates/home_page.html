@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block page_content %}
+
+<section class="page-all-content">
+  <div class="page-header">
+    <div class="container"><h2>ABOUT THIS PROJECT</h2></div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <p>
+        โปรเจ็กต์นี้ได้จัดทำขึ้นเพื่อศึกษาการทำงาน วิธีใช้งาน และหลักการนำมาใช้
+        ของอัลกอริทึมในเรื่องของการเรียนรู้ของเครื่อง (Machine Learning) และการประมวลผลภาษาธรรมชาติ (Natural Language Processing)
+        โดยขอบเขตการศึกษาปัจจุบันของงานนี้จะอยู่ในเรื่องของโรคติดเชื้อไวรัสโคโรนา 2019
+        (Covid-19) โดยจะมีการจำแนกข้อมูลทางสถิติของผู้ที่ติดเชื้อและผู้ที่เสียชีวิตจากโรคไข้หวัดใหญ่สายพันธุ์นี้
+        และวิเคราะห์ข้อมูลทางอารมณ์ของการติดเชื้อไข้หวัดใหญ่
+        ผ่านสื่อสังคมออนไลน์แพลตฟอร์ม Twitter
+      </p>
+      
+      <p>&nbsp;</p>
+      <p>
+        ในส่วนของการสกัดข้อมูล (Information Extraction) ของการติดเชื้อ Covid-19 สามารถเลือกข้อมูลผู้ติดเชื้อเฉพาะประเทศที่อยู่ในความสนใจเท่านั้น
+        โดยที่อัลกอริทึมที่ผู้พัฒนาได้ศึกษาและทดลองใช้ มีดังนี้
+        <p> 1. K Nearest Neighbor (KNN) &nbsp;&nbsp;<a href="/result/k_nearest_neighbor">ความแม่นยำ</a></p>
+        <p> 2. Naive Bayes (NB) &nbsp;&nbsp;<a href="/result/naive_bayes">ความแม่นยำ</a></p>
+        <p> 3. Decision Tree (DT) &nbsp;&nbsp;<a href="/result/decision_tree">ความแม่นยำ</a></p>
+        <p> 4. Random Forest (RF) &nbsp;&nbsp;<a href="/result/random_forest">ความแม่นยำ</a></p>
+        <p> 5. Support Vector Machine (SVM) &nbsp;&nbsp;<a href="/result/support_vector_machine">ความแม่นยำ</a></p>
+        <p>ในส่วนข้อมูลที่นำมาฝึก (Train) ด้วยหลักการเรียนรู้แบบมีผู้สอน (Supervised Learning) 
+          เป็นข้อมูลที่ผู้พัฒนาดึงมาจาก Twitter เป็นจำนวน 700 ทวีต 
+          ของเดือนกุมภาพันธ์ ปี 2563 และได้ทดลองใช้ทำนาย (Predict) ชุดข้อมูลอีกชุดหนึ่งในช่วง 3 เดือนที่ต่อเนื่อง
+           คือ เดือนมีนาคม เมษายน และพฤษภาคม ของปี 2563 อีกด้วย ดูได้จาก <a href="/information_extraction/result">ผลลัพธ์การทำนาย</a></p>
+        <p><b>** ในส่วนของเว็บไซต์ผู้พัฒนาได้ตัดสินใจเลือกอัลกอริทึม Random Forest ที่ให้ผลลัพธ์ความแม่นยำสูงสุดมาใช้เท่านั้น ** </b></p>
+      </p>
+      <p>&nbsp;</p>
+      <p>ในส่วนการวิเคราะห์ทางอารมณ์ (Sentiment Analysis)
+        จะสามารถเลือกเปลี่ยนสายพันธุ์ของเชื้อไข้หวัดใหญ่ได้
+        ซึ่งผู้พัฒนาได้นำหลักการเรียนรู้เชิงลึก (Deep Learning) ด้วยอัลกอริทึม RNN และโมเดล Bi-GRU
+        เข้ามาช่วยวิเคราะห์ข้อมูลรวมทั้งสิ้น 1 ล้าน 6 แสน ทวีต : 
+        <a href="https://www.kaggle.com/kazanova/sentiment140" target="_blank">Sentiment140 dataset with 1.6 million tweets</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
