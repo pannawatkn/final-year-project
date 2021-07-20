@@ -311,8 +311,8 @@ def decode_result(label):
 # '''''''''''''''''''''''''''''''''''
 @app.route('/ie_retrieve_twitter_data', methods=['POST'])
 def ie_retrieve_twitter_data():
-    auth = tweepy.OAuthHandler(config.twitter_oauth, config.twitter_oauth2)
-    auth.set_access_token(config.twitter_access_token, config.twitter_access_token2)
+    auth = tweepy.OAuthHandler(config.consumerKey, config.consumerSecret)
+    auth.set_access_token(config.accessToken, config.accessTokenSecret)
     api = tweepy.API(auth, wait_on_rate_limit=True)
 
     country = request.form.get('country')
@@ -404,8 +404,8 @@ def ie_predict():
 # '''''''''''''''''''''''''''''''''''
 @app.route('/sentiment_retrieve_twitter_data', methods=['POST'])
 def sentiment_retrieve_twitter_data():
-    auth = tweepy.OAuthHandler(config.twitter_oauth, config.twitter_oauth2)
-    auth.set_access_token(config.twitter_access_token, config.twitter_access_token2)
+    auth = tweepy.OAuthHandler(config.consumerKey, config.consumerSecret)
+    auth.set_access_token(config.accessToken, config.accessTokenSecret)
     api = tweepy.API(auth, wait_on_rate_limit=True)
 
     disease = request.form.get('disease')
